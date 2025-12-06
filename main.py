@@ -154,16 +154,19 @@ def consultas_programadas():
 
 def main():
     print(f"🤖 Bot iniciado - Monitoreando PPT: {NUMERO_PPT}")
-    print(f"🕐 Hora actual del servidor: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("Version 2.0")
-    enviar_telegram(f"🤖 Bot iniciado!\n📋 Monitoreando PPT: {NUMERO_PPT}\n\nUsa /help para ver comandos")
+    hora_servidor = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    enviar_telegram(
+        f"🤖 Bot iniciado!\n"
+        f"📋 Monitoreando PPT: {NUMERO_PPT}\n"
+        f"🕐 Hora servidor: {hora_servidor}\n\n"
+        f"Usa /help para ver comandos"
+    )
 
     # Hilo para escuchar comandos
     Thread(target=escuchar_comandos, daemon=True).start()
 
     # Hilo para consultas programadas
     consultas_programadas()
-
 
 if __name__ == "__main__":
     main()
